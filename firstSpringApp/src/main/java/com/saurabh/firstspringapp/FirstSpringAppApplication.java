@@ -17,6 +17,6 @@ public class FirstSpringAppApplication {
 
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value="name", defaultValue="World") String name) {
-		return String.format("<h1>Hello %s!<h1>", name);
+		return String.format("hello %s", name);
 	}
 }
