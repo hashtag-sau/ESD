@@ -1,7 +1,15 @@
 package com.saurabh.myrestaurant.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data //lombok data contains getter setter tostring etc
+@Builder //can
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Customer {
     @Id

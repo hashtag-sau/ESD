@@ -1,0 +1,4 @@
+Here i will be adding some notes about which is i think is important to know.
+
+1. In Spring, dependency injection happens based on the type of the field or constructor parameter, not the name of the field or variable
+
