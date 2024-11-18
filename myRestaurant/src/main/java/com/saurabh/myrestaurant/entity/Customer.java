@@ -27,4 +27,8 @@ public class Customer {
 
     @Column(name="password", nullable = false)
     private String password;
+
+    @Column(name="accessToken", nullable = false)
+    private String accessToken; //for refresh tokens
+
 }
