@@ -39,10 +39,17 @@ public class CustomerService {
         Customer customer = getCustomerByEmail(email);
 
         if(!encryptionService.validate(password, customer.getPassword())) {
-            return "Invalid Password";
+            throw new IllegalArgumentException("Invalid credentials");
         }
 
-        return jwtHelper.generateToken(email);
+        String accessToken = jwtHelper.generateAccessToken(email);
+        String refreshToken = jwtHelper.generateRefreshToken(email);
+
+        // Creating the raw JSON string manually
+        String jsonResponse = String.format("{\"access_token\":\"%s\", \"refresh_token\":\"%s\"}", accessToken, refreshToken);
+
+        return jsonResponse;
+
     }
 
     public String registerUser(CustomerRegisterRequest customerRegisterRequest) {
@@ -52,9 +59,16 @@ public class CustomerService {
         }
 
         Customer customer = customerMapper.toCustomer(customerRegisterRequest);
-        customer.setPassword(encryptionService.encryptPassword(customer.getPassword()));
-        customerRepository.save(customer);
-        return jwtHelper.generateToken(customer.getEmail());
 
+        String accessToken = jwtHelper.generateAccessToken(customer.getEmail());
+        String refreshToken = jwtHelper.generateRefreshToken(customer.getEmail());
+
+        customer.setPassword(encryptionService.encryptPassword(customer.getPassword()));
+        customer.setRefreshToken(refreshToken);
+        customerRepository.save(customer);
+
+        // Creating the raw JSON string manually
+        String jsonResponse = String.format("{\"access_token\":\"%s\", \"refresh_token\":\"%s\"}", accessToken, refreshToken);
+        return jsonResponse;
     }
 }

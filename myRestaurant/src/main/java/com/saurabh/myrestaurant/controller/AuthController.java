@@ -21,13 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final CustomerService customerService;
 
-    @PostMapping("/login")
+    @PostMapping("/logins")
     public ResponseEntity<String> login(@RequestBody @Valid LoginRequest loginRequest) {
         return ResponseEntity.ok(customerService.login(loginRequest));
     }
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody @Valid CustomerRegisterRequest customerRegisterRequest) {
+        System.out.println("debug");
         return ResponseEntity.ok(customerService.registerUser(customerRegisterRequest));
     }
 }

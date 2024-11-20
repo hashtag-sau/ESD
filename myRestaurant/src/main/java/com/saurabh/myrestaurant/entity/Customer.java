@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="Customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name="firstName", nullable = false)
@@ -28,7 +29,7 @@ public class Customer {
     @Column(name="password", nullable = false)
     private String password;
 
-    @Column(name="accessToken", nullable = false)
-    private String accessToken; //for refresh tokens
+    @Column(name="refreshToken", nullable = false)
+    private String refreshToken; //for refresh tokens
 
 }
