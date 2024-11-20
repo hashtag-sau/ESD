@@ -3,7 +3,9 @@ import com.saurabh.myrestaurant.dto.CustomerDetailsResponse;
 import com.saurabh.myrestaurant.dto.CustomerRegisterRequest;
 import com.saurabh.myrestaurant.entity.Customer;
 import org.hibernate.id.enhanced.CustomOptimizerDescriptor;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerMapper {
 
     //CustomerRegister DTO to Customer entity

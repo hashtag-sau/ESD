@@ -3,6 +3,7 @@ package com.saurabh.myrestaurant.helper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -60,4 +61,28 @@ public class JWThelper {
         return !isTokenExpired(token);
     }
 
+    public Boolean verifyToken(String authHeader){
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7); // got the token
+            String userName = extractUserName(token);
+
+            if(userName == null || !validateToken(token, userName)) {
+                return false;
+            }
+
+        }
+        else{
+            //response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); //this will only set 401
+           // response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"http header not correct"); //this will also send error message
+            return false;
+        }
+        return true;
+    }
+
+    public String getTokenFromHeader(String authHeader) {
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7); // got the token
+            return token;
+        }
+    }
 }
