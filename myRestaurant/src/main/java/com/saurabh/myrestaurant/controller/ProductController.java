@@ -17,13 +17,12 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-
-    @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductRequest productCreateRequest) {
-        return ResponseEntity.ok(productService.createProduct(productCreateRequest));
+    @PostMapping("/add")
+    public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductRequest productRequest) {
+        return ResponseEntity.ok(productService.createProduct(productRequest));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }

@@ -1,0 +1,77 @@
+Here i will be adding some notes about which is i think is important to know.
+
+1. In Spring, dependency injection happens based on the type of the field or constructor parameter, not the name of the field or variable
+
+2. @RestController is combination of @Controller and @ResponseBody
+
+3. Key REST API Naming Best Practices:
+-Use nouns for resources (e.g., /users, /products).
+-HTTP methods define the action (GET, POST, PUT, DELETE).
+-Plural nouns for collections and singular nouns for individual resources.
+-Version your API using /v1, /v2 in the URL.
+-Use query parameters for filtering, sorting, and pagination.
+-Keep the names consistent, descriptive, and intuitive.
+-Use status codes appropriately for HTTP responses.
+-Stick to hyphens for separating words in URIs (/user-profiles), and avoid underscores (_).
+
+4. In Spring project, the SecurityConfig (or any custom configuration class) is not explicitly called in the code. Spring automatically detects and invokes configuration classes.
+
+Since SecurityConfig implements WebMvcConfigurer, the methods inside it, such as addInterceptors(), will be automatically executed to modify the Spring MVC configuration when Spring Boot initializes the web layer.
+RequestInterceptor is like middleware.
+
+5. Java Records are a special kind of class for immutable data objects.
+ use records instead of regular classes when you want immutable and simple data holders, making them ideal for DTOs.
+
+6. In Spring Data JPA, repositories are typically defined as interfaces that extend Spring's repository interfaces like JpaRepository. These interfaces don't require an implementation; Spring Data JPA automatically provides the implementation at runtime.
+
+The CustomerRepo interface is a Data Access Object (DAO) that will handle the interaction with the Customer entity (like querying the database, saving data, etc.).
+
+JpaRepository extends two interfaces:
+
+PagingAndSortingRepository: Provides methods for pagination and sorting.
+CrudRepository: Provides basic CRUD operations such as save(), delete(), findById(), findAll(), etc.
+By extending JpaRepository, your repository interface (CustomerRepo) inherits all the basic CRUD operations as well as pagination and sorting capabilities, without needing to write any SQL or JPQL (Java Persistence Query Language) code.
+
+7. @RequiredArgsConstructor automatically generates a constructor for all final fields. 
+This constructor will implicitly be used by Spring for dependency injection.
+No need to explicitly use @Autowired on the constructor when you use @RequiredArgsConstructor.
+
+8. Access token and refresh token concept
+    The access token and refresh token are commonly used in token-based authentication systems (such as JWT) to provide secure and efficient user authentication.
+
+    1. Access Token:
+    Purpose: An access token is a short-lived token that allows access to protected resources (such as API endpoints). It typically contains user information (claims) and is used to authenticate the user for each request to your backend.
+    Expiration: The access token typically expires after a short period (e.g., 15 minutes to 1 hour) to reduce security risks in case the token is compromised.
+    Storage: Access tokens are generally sent in the HTTP Authorization header (as a Bearer token) with every request to protected resources.
+    2. Refresh Token:
+    Purpose: The refresh token is used to obtain a new access token once the access token has expired. It is a long-lived token that can be used to authenticate the user without requiring the user to log in again.
+    Expiration: Refresh tokens have a much longer lifespan (e.g., several days or weeks). In the event the refresh token is expired or revoked, the user must log in again.
+    Storage: Refresh tokens should be stored securely (e.g., in a database, HTTP-only cookies, etc.) to prevent unauthorized access.
+    Flow of Access Token and Refresh Token
+    User Login:
+
+    The user submits their credentials (username and password) to the backend.
+    The backend authenticates the user and generates two tokens:
+    An access token (valid for a short duration, e.g., 15 minutes).
+    A refresh token (valid for a longer duration, e.g., 7 days).
+    The access token is returned to the user and is used for subsequent requests.
+    The refresh token is saved in the database, tied to the user.
+    Requesting Protected Resources:
+
+    For subsequent API requests, the client sends the access token in the Authorization header.
+    If the access token is valid, the backend processes the request.
+    If the access token has expired, the client can use the refresh token to obtain a new access token.
+    Refreshing the Access Token:
+
+    When the access token expires, the client sends the refresh token to the server in a refresh-token endpoint (/refresh-token).
+    The backend validates the refresh token.
+    If the refresh token is valid, the backend issues a new access token (and possibly a new refresh token).
+    Logout:
+
+    When the user logs out, the refresh token should be revoked/deleted from the database.
+
+
+
+
+
+

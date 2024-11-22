@@ -25,4 +25,9 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.retrieveCustomer(email));
 
     }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<Object> getCustomerDetailsByEmail(@PathVariable String email) {
+        return  ResponseEntity.ok(customerService.retrieveCustomer(email));
+    }
 }
