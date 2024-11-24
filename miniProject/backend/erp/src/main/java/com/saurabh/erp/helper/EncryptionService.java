@@ -1,4 +1,4 @@
-package com.saurabh.myrestaurant.helper;
+package com.saurabh.erp.helper;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

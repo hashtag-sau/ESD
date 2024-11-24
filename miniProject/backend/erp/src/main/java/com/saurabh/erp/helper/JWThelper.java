@@ -1,4 +1,4 @@
-package com.saurabh.myrestaurant.helper;
+package com.saurabh.erp.helper;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

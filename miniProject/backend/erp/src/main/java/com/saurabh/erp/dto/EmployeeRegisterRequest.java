@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 
 public record EmployeeRegisterRequest(
-        @NotNull(message = "Employee ID cannot be null")
-        long employeeID,
 
         @NotBlank(message = "First name is required")
         @Size(min = 2, max = 30, message = "First name must be between 2 and 50 characters")
@@ -29,8 +27,12 @@ public record EmployeeRegisterRequest(
 //        @JsonProperty("")
 //        String photographPath,
 
-        @NotNull(message = "Department cannot be null")
-        @JsonProperty()
-        long department
+
+        @JsonProperty("department")
+        long department,
+
+        @NotBlank(message = "password cannot be null")
+        @JsonProperty("password")
+        String password
 ) {
 }

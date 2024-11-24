@@ -7,7 +7,6 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 @Entity
 @Table(name="Employee")
@@ -37,4 +36,7 @@ public class Employee {
 
     @Column(name="password", nullable = false)
     private String password;
+
+    @Column(name="refresh_token")
+    private String refreshToken;
 }

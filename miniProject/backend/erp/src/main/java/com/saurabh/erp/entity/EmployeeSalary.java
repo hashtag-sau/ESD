@@ -8,7 +8,6 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 @Entity
 @Table(name="Employee_Salary")
@@ -19,9 +18,8 @@ public class EmployeeSalary {
     private long id;
 
     // Foreign Key relationship with the Employee entity
-    @ManyToOne(fetch = FetchType.LAZY)  // Many salaries to one employee
-    @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")  // Create foreign key with employeeId
-    private Employee employee;  // Linking to the Employee entity
+    @Column(name = "employee_id")
+    private long employeeID;  // Linking to the Employee entity
 
     @Column(name = "payment_date", nullable = false)
     private Date paymentDate;

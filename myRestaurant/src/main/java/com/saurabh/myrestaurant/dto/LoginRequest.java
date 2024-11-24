@@ -7,7 +7,7 @@ import java.lang.annotation.Native;
 
 public record LoginRequest(
         @NotNull(message = "Email is required")
-        @Email(message = "Invalid Email Format")
+        @Email(message = "Invalid Email Format bad request")
         @JsonProperty("email") //jackson annotation for json mapping this will tell to map email field in json to here
         String email,
 
