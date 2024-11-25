@@ -47,13 +47,14 @@ public class EmployeeController {
     }
 
     // Get Employee Details endpoint
-    @GetMapping("/detail/{id}")
-    public ResponseEntity<?> getEmployeeDetails(@PathVariable long id, @RequestHeader("Authorization") String authHeader) {
+    @GetMapping("/detail")
+    public ResponseEntity<?> getEmployeeDetails( @RequestHeader("Authorization") String authHeader) {
         if(!jwtUtils.verifyToken(authHeader)){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Invalid or expired token. Please log in again.");
         }
         String employeeID = jwtUtils.extractUserID(jwtUtils.getTokenFromHeader(authHeader));
+        int id = Integer.parseInt(employeeID);
 
        return ResponseEntity.ok(employeeService.getEmployeeDetails(id));
     }

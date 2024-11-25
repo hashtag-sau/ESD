@@ -11,14 +11,14 @@ const App = () => {
   const isLoggedIn = !!localStorage.getItem('token');
   const Navigate = useNavigate();
 
-  if (!isLoggedIn) {
-    console.log('not logged in');
-    return (
-      <Router>
-        <Navigate to="/" />
-      </Router>
-    );
-  }
+  // if (!isLoggedIn) {
+  //   console.log('not logged in');
+  //   return (
+  //     <Router>
+  //       <Navigate to="/" />
+  //     </Router>
+  //   );
+  // }
   return (
     <Router>
       {isLoggedIn && <Navbar />}
