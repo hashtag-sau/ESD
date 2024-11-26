@@ -54,6 +54,7 @@ public class JWThelper {
     // Generate refresh token
     public String generateRefreshToken(String username) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("token_type", "refresh_token");
         return createToken(claims, username, REFRESH_TOKEN_EXPIRATION);
     }
 
@@ -89,6 +90,37 @@ public class JWThelper {
             return false;
         }
         return true;
+    }
+
+    // extracting the token type from the JWT
+    private String extractTokenType(String token) {
+        try {
+            return Jwts.parser()
+                    .setSigningKey(SECRET_KEY)
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .get("token_type", String.class);  // Extract the 'token_type' claim
+        } catch (Exception e) {
+            return null;  // Return null if token is invalid or the claim is not present
+        }
+    }
+
+    public Boolean verifyRefreshToken(String authHeader) {
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);  // Extract token from "Bearer <token>"
+
+            // Extract token type and user name
+            String tokenType = extractTokenType(token);
+            String userName = extractUserID(token);
+
+            // Ensure the token type is "refresh" and validate the token
+            if ("refresh_token".equals(tokenType) && userName != null && validateToken(token, userName)) {
+                return true;  // Token is a valid refresh token
+            }
+        }
+
+        // If any condition fails, the refresh token is not valid
+        return false;
     }
 
     public String getTokenFromHeader(String authHeader) {

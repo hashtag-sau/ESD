@@ -87,6 +87,20 @@ public class EmployeeService {
         return response;
     }
 
+    public Map<String, String> refreshToken(String id){
+        Employee employee = getEmployeeById(Long.parseLong(id));
+
+        String accessToken = jwThelper.generateAccessToken(id);
+        String refreshToken = jwThelper.generateRefreshToken(id);
+
+        employee.setRefreshToken(refreshToken);
+        employeeRepository.save(employee);
+        Map<String, String> response = new HashMap<>();
+        response.put("access_token", accessToken);
+        response.put("refresh_token", refreshToken);
+        return response;
+    }
+
     public String setPhotoPath(String filename, String employeeId) {
         int id = Integer.parseInt(employeeId);
         Employee employee = getEmployeeById(id);
