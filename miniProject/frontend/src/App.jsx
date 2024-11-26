@@ -8,8 +8,8 @@ import Navbar from './components/Navbar';
 import { useNavigate } from 'react-router-dom';
 
 const App = () => {
-  const isLoggedIn = !!localStorage.getItem('token');
-  const Navigate = useNavigate();
+  // const isLoggedIn = !!localStorage.getItem('token');
+  //const Navigate = useNavigate();
 
   // if (!isLoggedIn) {
   //   console.log('not logged in');
@@ -21,7 +21,7 @@ const App = () => {
   // }
   return (
     <Router>
-      {isLoggedIn && <Navbar />}
+      {/* {isLoggedIn && <Navbar />} */}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />

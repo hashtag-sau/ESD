@@ -15,7 +15,7 @@ import java.util.function.Function;
 public class JWThelper {
     private final String SECRET_KEY = "b2fcb37e02a3d482dcb3ea508dc490ab12d68d4cd9f78f3527f9bb06266b923d";
 
-    private static final long ACCESS_TOKEN_EXPIRATION = 1000 * 60 * 30; // 30 minutes
+    private static final long ACCESS_TOKEN_EXPIRATION = 1000 * 30 * 2; // 30 minutes
     private static final long REFRESH_TOKEN_EXPIRATION = 1000 * 60 * 60 * 24 * 7; // 7 days
 
     // Extract all claims from the token

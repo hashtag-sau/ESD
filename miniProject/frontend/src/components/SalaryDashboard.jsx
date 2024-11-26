@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// src/components/SalaryDashboard.js
+import React from 'react';
 import jsPDF from 'jspdf';
+import useSalaryData from '../hooks/useSalaryData'; // Import custom hook
 
 const SalaryDashboard = () => {
-  const [salaryData, setSalaryData] = useState([]);
-
-  useEffect(() => {
-    const fetchSalaryData = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/v1/employee/salary/all', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        });
-        setSalaryData(response.data);
-      } catch (error) {
-        alert('Failed to fetch salary data.');
-      }
-    };
-    fetchSalaryData();
-  }, []);
+  // Use custom hook for salary data
+  const { salaryData, loading, error } = useSalaryData();
+  console.log(salaryData);
 
   const downloadSalarySlip = (salary) => {
     const doc = new jsPDF();
@@ -26,6 +15,14 @@ const SalaryDashboard = () => {
     doc.text(`Date: ${salary.date}`, 10, 30);
     doc.save(`${salary.month}_salary_slip.pdf`);
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Displays when loading is true
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Displays when there is an error
+  }
 
   return (
     <div className="p-4">

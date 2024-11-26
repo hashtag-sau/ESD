@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth'; // Import useAuth hook
 
 const Navbar = () => {
+  const { logout } = useAuth(); // Use logout from the hook
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Remove token from storage
-    navigate('/'); // Redirect to login page
+    logout(); // Call the logout function from useAuth hook
+    navigate('/'); // Redirect to the login page
   };
 
   return (

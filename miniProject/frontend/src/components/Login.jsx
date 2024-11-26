@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { login } from '../services/authService';
+import { saveTokens } from '../services/storage';
+import useAuth from '../hooks/useAuth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/home');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/employee/login', {
-        email,
-        password
-      });
-      console.log(response.data);
-      localStorage.setItem('token', response.data.access_token);
-      navigate('/dashboard');
+      const { access_token, refresh_token } = await login(email, password);
+      saveTokens(access_token, refresh_token);
+      navigate('/home');
     } catch (error) {
-      alert('Login failed!');
+      alert('Login failed! Please check your credentials.');
     }
   };
 
