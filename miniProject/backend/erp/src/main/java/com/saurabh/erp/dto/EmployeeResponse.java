@@ -17,7 +17,10 @@ public record EmployeeResponse(
         String title,
 
         @JsonProperty("department")
-        long department
+        long department,
+
+        @JsonProperty("photograph_path")
+        String photographPath
 
 ) {
 }
