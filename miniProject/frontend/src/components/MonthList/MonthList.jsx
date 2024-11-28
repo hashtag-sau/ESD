@@ -9,7 +9,6 @@ const MonthList = ({ selectedMonth, setSelectedMonth }) => {
 
   return (
     <>
-      {userDetails && <UserCard user={userDetails} />}
       <div className="mb-6">
         <div className="flex gap-4 overflow-x-auto">
           {salaryData?.map((item) => (

@@ -8,6 +8,7 @@ export default function Home() {
   const { salaryData } = useUserDetails();
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [showAllDetails, setShowAllDetails] = useState(false);
+  const { userDetails } = useUserDetails();
   const navigate = useNavigate();
 
   // Get the current month data on initial load
@@ -31,6 +32,8 @@ export default function Home() {
       setSelectedMonth={setSelectedMonth}
       showAllDetails={showAllDetails}
       setShowAllDetails={setShowAllDetails}
+      handleViewPayslip={handleViewPayslip}
+      userDetails={userDetails}
     />
   );
 }

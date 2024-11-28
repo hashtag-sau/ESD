@@ -1,14 +1,19 @@
 import MonthList from '../MonthList/MonthList';
+import UserCard from './UserCard';
 const HomeUI = ({
   salaryData,
   selectedMonth,
   setSelectedMonth,
   showAllDetails,
-  setShowAllDetails
+  setShowAllDetails,
+  handleViewPayslip,
+  userDetails
 }) => {
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
       {/* User Header and Month Navigation */}
+      {userDetails && <UserCard user={userDetails} />}
+
       <MonthList selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
 
       {/* Payslip & Tax Summary Sections */}

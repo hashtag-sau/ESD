@@ -1,3 +1,5 @@
+//this is axios configuration file and it is used to set the token in the header of the request
+//it acts as interceptor and also refreshes the token if it is expired
 import axios from 'axios';
 import { getAccessToken, getRefreshToken, saveTokens, removeTokens } from '../services/storage';
 

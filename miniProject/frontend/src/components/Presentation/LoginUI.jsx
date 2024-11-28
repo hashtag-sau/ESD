@@ -1,4 +1,5 @@
 const LoginUI = ({ email, setEmail, password, setPassword, handleLogin }) => {
+  console.log('LoginUI');
   return (
     <div className="min-h-screen flex items-center justify-center">
       <form onSubmit={handleLogin} className="bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-sm">

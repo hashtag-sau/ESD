@@ -1,3 +1,4 @@
+//utility function to get the month name from the date
 export const getMonthName = (date) => {
   const months = [
     'January',

@@ -15,7 +15,7 @@ const useAuth = () => {
     window.location.href = '/';
   };
 
-  return { isAuthenticated, logout };
+  return { isAuthenticated, setIsAuthenticated, logout };
 };
 
 export default useAuth;

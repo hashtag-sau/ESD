@@ -7,8 +7,9 @@ import LoginUI from './Presentation/LoginUI';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [hasNavigated, setHasNavigated] = useState(false);
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   useEffect(() => {
     if (isAuthenticated) {

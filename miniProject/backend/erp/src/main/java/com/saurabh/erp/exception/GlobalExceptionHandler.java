@@ -87,6 +87,14 @@ public class GlobalExceptionHandler {
                 .body("Required request header is missing: " + ex.getHeaderName());
     }
 
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ResponseEntity<?> EmployeeNotFoundException(EmployeeNotFoundException ex) {
+        // Custom response message for invalid URL (404)
+        String errorMessage = "Wrong email or password";
+
+        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+    }
+
 
 
 }

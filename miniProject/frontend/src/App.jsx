@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
-import SalaryDetails from './pages/SalaryDetails';
+import SalaryDetails from './components/SalaryDetails';
 import Sidebar from './components/Sidebar';
-import { isAuthenticated } from './hooks/useAuth';
+import useAuth from './hooks/useAuth';
 
 const App = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <Router>
       <div className="flex">

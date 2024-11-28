@@ -1,4 +1,5 @@
 import { jsPDF } from 'jspdf'; // Import jsPDF
+import { getMonthName } from '../../utils/dateUtil';
 
 const GeneratePayslipPDF = ({ selectedMonth }) => {
   console.log({ selectedMonth });
@@ -12,7 +13,14 @@ const GeneratePayslipPDF = ({ selectedMonth }) => {
 
     // Title
     doc.setFontSize(18);
-    doc.text('Payslip for ' + selectedMonth.month, 20, 20);
+    doc.text(
+      'Payslip for ' +
+        getMonthName(selectedMonth.paymentDate) +
+        ' ' +
+        new Date(selectedMonth.paymentDate).getFullYear(),
+      20,
+      20
+    );
 
     // Take Home & Gross Pay
     doc.setFontSize(14);

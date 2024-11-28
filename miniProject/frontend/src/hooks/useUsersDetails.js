@@ -1,7 +1,7 @@
 // hooks/useUserDetails.js
 
 import { useState, useEffect } from 'react';
-import { fetchSalaryData } from '../utils/httputils';
+import { fetchSalaryData, fetchEmployeeData } from '../utils/httputils';
 import { User } from '../model/Users';
 
 export const useUserDetails = () => {
@@ -14,12 +14,15 @@ export const useUserDetails = () => {
         const data = await fetchSalaryData();
         setSalaryData(data);
 
-        // Example User Data
+        const getuser = await fetchEmployeeData();
+        console.log(getuser);
+
         const user = new User({
-          name: 'Saurabh',
-          designation: 'Software Engineer',
-          profilePic: 'https://via.placeholder.com/41'
+          name: `${getuser.first_name}`,
+          designation: getuser.title,
+          profilePic: getuser.photograph_path
         });
+
         setUserDetails(user);
       } catch (error) {
         alert(error.message);

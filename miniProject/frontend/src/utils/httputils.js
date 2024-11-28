@@ -1,9 +1,10 @@
-import axiosClient from "./axiosClient";
-
+//Http request functions
+//this function is used to do api call to get data
+import axiosClient from './axiosClient';
 
 export const fetchSalaryData = async (token) => {
   try {
-    const response = await axios.get(/salary/all);
+    const response = await axiosClient.get('/salary/all');
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch salary data.');
@@ -12,9 +13,9 @@ export const fetchSalaryData = async (token) => {
 
 export const fetchEmployeeData = async (token) => {
   try {
-    const response = await axios.get(/employee/detail);
+    const response = await axiosClient.get('/detail');
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch employee data.');
   }
-}
+};
