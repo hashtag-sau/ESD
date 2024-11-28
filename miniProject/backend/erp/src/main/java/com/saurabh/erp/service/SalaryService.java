@@ -1,5 +1,6 @@
 package com.saurabh.erp.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.saurabh.erp.dto.EmployeeSalaryResponse;
 import com.saurabh.erp.entity.EmployeeSalary;
 import com.saurabh.erp.mapper.EmployeeSalaryMapper;
@@ -18,6 +19,15 @@ public class SalaryService {
     private final EmployeeSalaryRepository employeeSalaryRepository;
     private final EmployeeSalaryMapper employeeSalaryMapper;
 
+    private EmployeeSalaryResponse safelyMapToResponse(EmployeeSalary employeeSalary) {
+        try {
+            return employeeSalaryMapper.toEmployeeSalaryResponse(employeeSalary);
+        } catch (JsonProcessingException e) {
+            System.err.println("Error mapping EmployeeSalary to EmployeeSalaryResponse: " + e.getMessage());
+            return null;
+        }
+    }
+
 
     public List<EmployeeSalaryResponse> getAllSalary(String employeeId) {
         int id = Integer.parseInt(employeeId);
@@ -27,7 +37,7 @@ public class SalaryService {
 
         if(salaries.isPresent()) {
            for (EmployeeSalary employeeSalary : salaries.get()) {
-               list.add(employeeSalaryMapper.toEmployeeSalaryResponse(employeeSalary));
+               list.add(safelyMapToResponse(employeeSalary));
            }
 
            return list;
@@ -44,7 +54,7 @@ public class SalaryService {
 
         if(salaries.isPresent()) {
             for (EmployeeSalary employeeSalary : salaries.get()) {
-                list.add(employeeSalaryMapper.toEmployeeSalaryResponse(employeeSalary));
+                list.add(safelyMapToResponse(employeeSalary));
             }
 
             return list;
@@ -60,7 +70,7 @@ public class SalaryService {
 
         if(salaries.isPresent()) {
             for (EmployeeSalary employeeSalary : salaries.get()) {
-                list.add(employeeSalaryMapper.toEmployeeSalaryResponse(employeeSalary));
+                list.add(safelyMapToResponse(employeeSalary));
             }
 
             return list;
