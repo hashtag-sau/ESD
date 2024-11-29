@@ -15,7 +15,11 @@ const HomeUI = ({
       {/* User Header and Month Navigation */}
       {userDetails && <UserCard user={userDetails} />}
 
-      <MonthList selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
+      <MonthList
+        selectedMonth={selectedMonth}
+        setSelectedMonth={setSelectedMonth}
+        salaryData={salaryData}
+      />
 
       {/* Payslip & Tax Summary Sections */}
       <section className="grid grid-cols-2 gap-6">

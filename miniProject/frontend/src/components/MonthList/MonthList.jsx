@@ -1,10 +1,10 @@
 import { useUserDetails } from '../../hooks/useUsersDetails';
 import { getMonthName } from '../../utils/dateUtil';
 
-const MonthList = ({ selectedMonth, setSelectedMonth }) => {
+const MonthList = ({ selectedMonth, setSelectedMonth, salaryData }) => {
   console.log({ selectedMonth, setSelectedMonth });
 
-  const { userDetails, salaryData } = useUserDetails();
+  //const { userDetails, salaryData } = useUserDetails();
 
   // Get the current year
   const currentYear = new Date().getFullYear();

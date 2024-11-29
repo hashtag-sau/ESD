@@ -276,3 +276,49 @@ VALUES
   ]'
 );
 
+INSERT INTO employee_salary 
+(id, employee_id, payment_date, amount, salary_details, deduction_details) 
+VALUES 
+-- Record for July
+(20, 2, '2024-07-01', 76000.00, 
+  '[
+    {"name": "Basic", "amount": "22000.00"},
+    {"name": "House Rent Allowance", "amount": "18000.00"},
+    {"name": "Conveyance Allowance", "amount": "10000.00"},
+    {"name": "Medical Allowance", "amount": "14000.00"}
+  ]', 
+  '[
+    {"name": "EPF Contribution", "amount": "2600.00"},
+    {"name": "Income Tax", "amount": "5000.00"},
+    {"name": "Professional Tax", "amount": "600.00"}
+  ]'),
+
+-- Record for June
+(21, 2, '2024-06-01', 69000.00, 
+  '[
+    {"name": "Basic", "amount": "19000.00"},
+    {"name": "House Rent Allowance", "amount": "16000.00"},
+    {"name": "Conveyance Allowance", "amount": "11000.00"},
+    {"name": "Medical Allowance", "amount": "12000.00"}
+  ]', 
+  '[
+    {"name": "EPF Contribution", "amount": "2200.00"},
+    {"name": "Income Tax", "amount": "4200.00"},
+    {"name": "Professional Tax", "amount": "500.00"}
+  ]'),
+
+-- Record for May
+(22, 2, '2024-05-01', 68000.00, 
+  '[
+    {"name": "Basic", "amount": "18000.00"},
+    {"name": "House Rent Allowance", "amount": "17000.00"},
+    {"name": "Conveyance Allowance", "amount": "12000.00"},
+    {"name": "Medical Allowance", "amount": "13000.00"}
+  ]', 
+  '[
+    {"name": "EPF Contribution", "amount": "2100.00"},
+    {"name": "Income Tax", "amount": "4300.00"},
+    {"name": "Professional Tax", "amount": "500.00"}
+  ]');
+
+
