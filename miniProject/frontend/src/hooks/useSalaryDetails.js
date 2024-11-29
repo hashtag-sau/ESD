@@ -14,6 +14,7 @@ const useSalaryDetails = () => {
         const data = await fetchSalaryData();
 
         // Map data to Salary instances
+        //here we are modelling the data to Salary model
         const salaries = data.map((item) => new Salary(item));
 
         // Extract unique financial years
@@ -23,7 +24,7 @@ const useSalaryDetails = () => {
         setFinancialYears(years);
 
         // Set current financial year and default month
-        const currentFY = years[0]; // Assuming latest year first
+        const currentFY = years[0]; // latest year is first
         setCurrentYear(currentFY);
 
         const defaultMonth = salaries.find((salary) => salary.getFinancialYear() === currentFY);

@@ -3,10 +3,13 @@ import { useState, useEffect } from 'react';
 import { getAccessToken, removeTokens } from '../services/storage';
 
 const useAuth = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(!!getAccessToken());
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    setIsAuthenticated(!!getAccessToken());
+    const token = getAccessToken();
+    if (token) {
+      setIsAuthenticated(true);
+    }
   }, []);
 
   const logout = () => {
@@ -15,7 +18,11 @@ const useAuth = () => {
     window.location.href = '/';
   };
 
-  return { isAuthenticated, setIsAuthenticated, logout };
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
+
+  return { isAuthenticated, setIsAuthenticated, logout, handleLoginSuccess };
 };
 
 export default useAuth;

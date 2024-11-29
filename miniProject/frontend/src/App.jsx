@@ -7,7 +7,8 @@ import Sidebar from './components/Sidebar';
 import useAuth from './hooks/useAuth';
 
 const App = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, handleLoginSuccess } = useAuth();
+  console.log(isAuthenticated);
   return (
     <Router>
       <div className="flex">
@@ -16,10 +17,18 @@ const App = () => {
         {/* Main Content */}
         <div className="flex-1 p-8">
           <Routes>
-            {/* Redirect to /home if user is logged in and trying to access / */}
-            <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Login />} />
             {/* Other routes */}
             <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/" />} />
+            <Route
+              path="/"
+              element={
+                isAuthenticated ? (
+                  <Navigate to="/home" />
+                ) : (
+                  <Login onLoginSuccess={handleLoginSuccess} />
+                )
+              }
+            />
             <Route
               path="/salary-details"
               element={isAuthenticated ? <SalaryDetails /> : <Navigate to="/" />}

@@ -4,18 +4,11 @@ import { saveTokens } from '../services/storage';
 import useAuth from '../hooks/useAuth';
 import { login as doLogin } from '../services/authService';
 import LoginUI from './Presentation/LoginUI';
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [hasNavigated, setHasNavigated] = useState(false);
-  const navigate = useNavigate();
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/home');
-    }
-  }, [isAuthenticated, navigate]);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -31,6 +24,8 @@ const Login = () => {
       }
       const { access_token, refresh_token } = await doLogin(email, password);
       saveTokens(access_token, refresh_token); //saving tokens that we got from the server
+      console.log(access_token, refresh_token);
+      onLoginSuccess();
       navigate('/home');
     } catch (error) {
       alert('Login failed! Please check your credentials.');
