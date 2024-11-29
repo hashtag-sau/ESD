@@ -11,7 +11,8 @@ export default function Sidebar() {
   // Menu items array
   const menuItems = [
     { name: 'Home', icon: '🏠', path: '/home' },
-    { name: 'Salary Details', icon: '💼', path: '/salary-details' }
+    { name: 'Salary Details', icon: '💼', path: '/salary-details' },
+    { name: 'Profile Page', icon: '👤', path: '/profile' }
   ];
 
   const handleLogout = () => {

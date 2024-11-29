@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveTokens } from '../services/storage';
-import useAuth from '../hooks/useAuth';
-import { login as doLogin } from '../services/authService';
-import LoginUI from './Presentation/LoginUI';
+import { saveTokens } from '../../services/storage';
+import useAuth from '../../hooks/useAuth';
+import { login as doLogin } from '../../services/authService';
+import LoginUI from '../Presentation/LoginUI';
 const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

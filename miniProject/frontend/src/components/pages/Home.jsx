@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import MonthList from './MonthList/MonthList';
 import { useNavigate } from 'react-router-dom';
-import { useUserDetails } from '../hooks/useUsersDetails';
-import HomeUI from './Presentation/HomeUI';
+import { useUserDetails } from '../../hooks/useUsersDetails';
+import HomeUI from '../Presentation/HomeUI';
 
 export default function Home() {
   const { salaryData } = useUserDetails();

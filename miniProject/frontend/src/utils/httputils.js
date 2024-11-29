@@ -19,3 +19,12 @@ export const fetchEmployeeData = async (token) => {
     throw new Error('Failed to fetch employee data.');
   }
 };
+
+export const updateEmployeeData = async (data) => {
+  try {
+    const response = await axiosClient.put('/detail', data);
+    return response;
+  } catch (error) {
+    throw new Error('Failed to update employee data.');
+  }
+};

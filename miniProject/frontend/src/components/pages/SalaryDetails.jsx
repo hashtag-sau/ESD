@@ -1,6 +1,6 @@
-import PayslipCard from '../components/Payslip/PayslipCard';
-import PayslipDetails from '../components/Payslip/PayslipDetails';
-import useSalaryDetails from '../hooks/useSalaryDetails';
+import PayslipCard from '../Payslip/PayslipCard';
+import PayslipDetails from '../Payslip/PayslipDetails';
+import useSalaryDetails from '../../hooks/useSalaryDetails';
 
 const SalaryDetails = () => {
   const {

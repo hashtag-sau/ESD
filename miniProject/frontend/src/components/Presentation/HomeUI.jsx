@@ -1,5 +1,6 @@
 import MonthList from '../MonthList/MonthList';
 import UserCard from './UserCard';
+import DonutChart from '../DonutChart';
 const HomeUI = ({
   salaryData,
   selectedMonth,
@@ -35,6 +36,12 @@ const HomeUI = ({
                   <strong>Gross Pay:</strong> {showAllDetails ? selectedMonth.grossPay : '******'}
                 </div>
               </div>
+
+              {/* Donut Chart */}
+              <div className="flex justify-center items-center">
+                <DonutChart data={selectedMonth} />
+              </div>
+
               <button
                 className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md"
                 onClick={handleViewPayslip}
